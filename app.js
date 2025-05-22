@@ -97,6 +97,6 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error.ejs", { err });
   // res.status(statusCode).send(message);
 });
-app.listen(4567, () => {
+app.listen(3000, () => {
   console.log("Server is listening to port 3000");
 });
