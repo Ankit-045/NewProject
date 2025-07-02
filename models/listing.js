@@ -38,7 +38,12 @@ const listingSchema = new Schema({
 
       // default: [80.9462, 26.8467] // default to Lucknow
     }
+  },
+  category: {
+    type: String,
+    enum: ["Trending", "Rooms", "Iconic cities", "Mountauns", "Castles", "Amazing Pools", "Camping", "Farms", "Arctic", "Domes", "Boats"]
   }
+
 
 
 

@@ -31,6 +31,10 @@
     align-items: center;
   }
 </style>
+<form action="/listings" method="GET" class="mb-4" style="max-width: 400px; margin: 2rem auto 0 auto; display: flex;">
+  <input type="text" name="q" class="form-control" placeholder="Search listings..." value="<%= q ? q : '' %>" style="flex: 1; margin-right: 0.5rem;">
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
 <div id="filters">
   <div class="filter">
     <div><i class="fa-solid fa-fire"></i></div>
