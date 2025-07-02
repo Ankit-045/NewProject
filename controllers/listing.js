@@ -3,22 +3,22 @@ const axios = require("axios");
 // const axios = require("axios");
 
 module.exports.index = async (req, res) => {
-    const { q } = req.query;
-    let allListings;
+    const { q, category } = req.query;
+    let filter = {};
     if (q && q.trim() !== "") {
         const searchRegex = new RegExp(q, "i");
-        allListings = await Listing.find({
-            $or: [
-                { title: searchRegex },
-                { description: searchRegex },
-                { location: searchRegex },
-                { country: searchRegex }
-            ]
-        });
-    } else {
-        allListings = await Listing.find({});
+        filter.$or = [
+            { title: searchRegex },
+            { description: searchRegex },
+            { location: searchRegex },
+            { country: searchRegex }
+        ];
     }
-    res.render("./listings/index", { allListings, q });
+    if (category && category !== "All") {
+        filter.category = category;
+    }
+    const allListings = await Listing.find(filter);
+    res.render("./listings/index", { allListings, q, category });
 };
 
 module.exports.renderNewForm = (req, res) => {
