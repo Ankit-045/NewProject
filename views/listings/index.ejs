@@ -31,62 +31,71 @@
     align-items: center;
   }
 </style>
-<form action="/listings" method="GET" class="mb-4" style="max-width: 400px; margin: 2rem auto 0 auto; display: flex;">
-  <input type="text" name="q" class="form-control" placeholder="Search listings..." value="<%= q ? q : '' %>" style="flex: 1; margin-right: 0.5rem;">
-  <% if (category) { %>
-    <input type="hidden" name="category" value="<%= category %>">
-  <% } %>
-  <button type="submit" class="btn btn-primary">Search</button>
-</form>
-<div id="filters">
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=All" class="filter <%= (!category || category === 'All') ? 'fw-bold text-primary' : '' %>">
-    <div><i class="fa-solid fa-globe"></i></div>
-    <p>All</p>
-  </a>
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=Trending" class="filter <%= category === 'Trending' ? 'fw-bold text-primary' : '' %>">
+<div class="d-flex justify-content-center align-items-center flex-wrap" style="margin-top: 2rem;">
+  <form action="/listings" method="GET" class="d-flex align-items-center mb-3" style="gap: 1rem;">
+    <label for="category" class="form-label mb-0 me-2">Filter by Category:</label>
+    <select name="category" id="category" class="form-select" style="width: 200px;">
+      <option value="All" <%= (!category || category === 'All') ? 'selected' : '' %>>All</option>
+      <option value="Trending" <%= category === 'Trending' ? 'selected' : '' %>>Trending</option>
+      <option value="Rooms" <%= category === 'Rooms' ? 'selected' : '' %>>Rooms</option>
+      <option value="Iconic cities" <%= category === 'Iconic cities' ? 'selected' : '' %>>Iconic cities</option>
+      <option value="Mountauns" <%= category === 'Mountauns' ? 'selected' : '' %>>Mountains</option>
+      <option value="Castles" <%= category === 'Castles' ? 'selected' : '' %>>Castles</option>
+      <option value="Amazing Pools" <%= category === 'Amazing Pools' ? 'selected' : '' %>>Amazing Pools</option>
+      <option value="Camping" <%= category === 'Camping' ? 'selected' : '' %>>Camping</option>
+      <option value="Farms" <%= category === 'Farms' ? 'selected' : '' %>>Farms</option>
+      <option value="Arctic" <%= category === 'Arctic' ? 'selected' : '' %>>Arctic</option>
+      <option value="Domes" <%= category === 'Domes' ? 'selected' : '' %>>Domes</option>
+      <option value="Boats" <%= category === 'Boats' ? 'selected' : '' %>>Boats</option>
+    </select>
+    <button type="submit" class="btn btn-outline-secondary">Apply</button>
+  </form>
+</div>
+<div id="filters" class="d-flex justify-content-center flex-wrap" style="gap: 1.5rem; margin-bottom: 2rem;">
+  <div class="filter">
     <div><i class="fa-solid fa-fire"></i></div>
     <p>Trending</p>
-  </a>
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=Rooms" class="filter <%= category === 'Rooms' ? 'fw-bold text-primary' : '' %>">
+  </div>
+  <div class="filter">
     <div><i class="fa-solid fa-bed"></i></div>
     <p>Rooms</p>
-  </a>
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=Iconic cities" class="filter <%= category === 'Iconic cities' ? 'fw-bold text-primary' : '' %>">
+  </div>
+  <div class="filter">
     <div><i class="fa-solid fa-mountain-city"></i></div>
     <p>Iconic cities</p>
-  </a>
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=Mountauns" class="filter <%= category === 'Mountauns' ? 'fw-bold text-primary' : '' %>">
+  </div>
+  <div class="filter">
     <div><i class="fa-solid fa-mountain"></i></div>
     <p>Mountains</p>
-  </a>
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=Castles" class="filter <%= category === 'Castles' ? 'fw-bold text-primary' : '' %>">
+  </div>
+  <div class="filter">
     <div><i class="fa-solid fa-chess-rook"></i></div>
     <p>Castles</p>
-  </a>
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=Amazing Pools" class="filter <%= category === 'Amazing Pools' ? 'fw-bold text-primary' : '' %>">
+  </div>
+  <div class="filter">
     <div><i class="fa-solid fa-person-swimming"></i></div>
     <p>Amazing Pools</p>
-  </a>
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=Camping" class="filter <%= category === 'Camping' ? 'fw-bold text-primary' : '' %>">
+  </div>
+  <div class="filter">
     <div><i class="fa-solid fa-campground"></i></div>
     <p>Camping</p>
-  </a>
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=Farms" class="filter <%= category === 'Farms' ? 'fw-bold text-primary' : '' %>">
+  </div>
+  <div class="filter">
     <div><i class="fa-solid fa-tractor"></i></div>
     <p>Farms</p>
-  </a>
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=Arctic" class="filter <%= category === 'Arctic' ? 'fw-bold text-primary' : '' %>">
+  </div>
+  <div class="filter">
     <div><i class="fa-solid fa-snowflake"></i></div>
     <p>Arctic</p>
-  </a>
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=Domes" class="filter <%= category === 'Domes' ? 'fw-bold text-primary' : '' %>">
+  </div>
+  <div class="filter">
     <div><i class="fa-solid fa-igloo"></i></div>
     <p>Domes</p>
-  </a>
-  <a href="/listings?<% if (q) { %>q=<%= encodeURIComponent(q) %>&<% } %>category=Boats" class="filter <%= category === 'Boats' ? 'fw-bold text-primary' : '' %>">
+  </div>
+  <div class="filter">
     <div><i class="fa-solid fa-sailboat"></i></div>
     <p>Boats</p>
-  </a>
+  </div>
   <div class="tax-toggle">
     <div class="form-check form-check-reverse form-switch">
       <input
